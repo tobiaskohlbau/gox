@@ -209,6 +209,7 @@ func execGo(GoCmd string, env []string, dir string, args ...string) (string, err
 	if dir != "" {
 		cmd.Dir = dir
 	}
+	cmd.Env = append(cmd.Env, "GO111MODULE=off")
 	if err := cmd.Run(); err != nil {
 		err = fmt.Errorf("%s\nStderr: %s", err, stderr.String())
 		return "", err
